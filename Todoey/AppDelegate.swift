@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //To get the directory of where UserDefaults plist is stored.
         print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
+        
+        let realmLocation = Realm.Configuration.defaultConfiguration.fileURL
+        print("Realm file location \(realmLocation)")
+        
+        //initialize Realm
+        do {
+            let realm = try Realm()
+        } catch {
+            print("Cannot initialize Realm \(error)")
+        }
+        
         
         print("didFinishLaunchingWithOption")
         return true
